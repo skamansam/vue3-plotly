@@ -54,7 +54,7 @@
   </div>
 </template>
 <script>
-import editor from "vue-json-editor";
+import editor from "json-editor-vue";
 import simple from "./simple.js";
 import contour from "./contour.js";
 import histogram from "./histogram.js";

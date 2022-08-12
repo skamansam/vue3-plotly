@@ -15,9 +15,7 @@ import "font-awesome/css/font-awesome.css";
 import "highlight.js/styles/default.css";
 import "highlight.js/styles/mono-blue.css";
 
-const app = createApp({
-  render: h => h(App)
-}).$mount("#app");
+const app = createApp(App);
 
 app.component("vue-draggable-resizable", VueDraggableResizable);
 app.component("plotly", Plotly);

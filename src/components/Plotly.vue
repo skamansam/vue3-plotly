@@ -6,10 +6,11 @@ import Plotly from "plotly.js";
 import events from "./events.js";
 import methods from "./methods.js";
 import { camelize } from "@/utils/helper";
+import ResizeDirective from 'vue-resize-directive';
 
 const directives = {};
 if (typeof window !== "undefined") {
-  directives.resize = require("vue-resize-directive");
+  directives.resize = ResizeDirective;
 }
 export default {
   name: "plotly",
