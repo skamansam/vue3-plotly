@@ -1,8 +1,11 @@
 <template>
-  <div :id="id" v-resize:debounce.100="onResize" />
+  <div
+    :id="id"
+    v-resize:debounce.100="onResize"
+  />
 </template>
 <script>
-import Plotly from "plotly.js";
+import Plotly from "plotly.js-dist";
 import events from "./events.js";
 import methods from "./methods.js";
 import { camelize } from "@/utils/helper";
@@ -13,7 +16,7 @@ if (typeof window !== "undefined") {
   directives.resize = ResizeDirective;
 }
 export default {
-  name: "plotly",
+  name: "Plotly",
   inheritAttrs: false,
   directives,
   props: {
@@ -74,7 +77,7 @@ export default {
       };
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     events.forEach(event => this.$el.removeAllListeners(event.completeName));
     Plotly.purge(this.$el);
   },
@@ -125,3 +128,5 @@ export default {
   }
 };
 </script>
+
+<style></style>
