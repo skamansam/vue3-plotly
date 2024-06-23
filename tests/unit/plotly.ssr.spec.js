@@ -2,12 +2,16 @@
  * @jest-environment node
  */
 
-const Vue = require("vue");
-const renderer = require("vue-server-renderer").createRenderer();
-const Plotly = require("@/components/Plotly").default;
-Vue.component("plotly", Plotly);
+import { createRenderer } from "@vue/server-renderer";
+import Vue from "vue";
+import Plotly from "@/components/Plotly.vue";
+
+Vue.component("Plotly", Plotly);
+
+const renderer = createRenderer();
+
 const app = new Vue({
-  name: "test-app",
+  name: "TestApp",
   template: `<plotly></plotly>`
 });
 let html;

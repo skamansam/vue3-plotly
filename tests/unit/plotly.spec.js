@@ -2,6 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import Plotly from "@/components/Plotly.vue";
 import plotlyjs from "plotly.js";
 import resize from "vue-resize-directive";
+import { describe, expect, test } from "vitest";
 jest.mock("vue-resize-directive");
 
 let wrapper;
