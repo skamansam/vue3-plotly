@@ -1,22 +1,23 @@
+import { vi } from 'vitest'
 export default {
   Plots: {
-    resize: jest.fn()
+    resize: vi.fn()
   },
-  plot: jest.fn(),
-  newPlot: jest.fn(element => {
-    element.on = jest.fn();
-    element.removeAllListeners = jest.fn();
+  plot: vi.fn(),
+  newPlot: vi.fn(element => {
+    element.on = vi.fn();
+    element.removeAllListeners = vi.fn();
   }),
-  react: jest.fn(),
-  relayout: jest.fn(),
-  restyle: jest.fn(),
-  update: jest.fn(),
-  purge: jest.fn(),
-  addTraces: jest.fn(),
-  deleteTraces: jest.fn(),
-  moveTraces: jest.fn(),
-  extendTraces: jest.fn(),
-  prependTraces: jest.fn(),
-  toImage: jest.fn(),
-  downloadImage: jest.fn()
+  react: vi.fn(),
+  relayout: vi.fn(),
+  restyle: vi.fn(),
+  update: vi.fn(),
+  purge: vi.fn(),
+  addTraces: vi.fn(),
+  deleteTraces: vi.fn(),
+  moveTraces: vi.fn(),
+  extendTraces: vi.fn(),
+  prependTraces: vi.fn(),
+  toImage: vi.fn(),
+  downloadImage: vi.fn()
 };

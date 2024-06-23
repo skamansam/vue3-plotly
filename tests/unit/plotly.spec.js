@@ -1,9 +1,11 @@
+import { vi } from "vitest";
 import { shallowMount } from "@vue/test-utils";
 import Plotly from "@/components/Plotly.vue";
-import plotlyjs from "plotly.js";
+import plotlyjs from "plotly.js-dist";
 import resize from "vue-resize-directive";
 import { describe, expect, test } from "vitest";
-jest.mock("vue-resize-directive");
+
+vi.mock("vue-resize-directive");
 
 let wrapper;
 let vm;
@@ -45,7 +47,7 @@ const events = [
 const methods = ["restyle", "relayout", "update", "addTraces", "deleteTraces", "moveTraces", "extendTraces", "prependTraces", "purge"];
 
 function shallowMountPlotty() {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   return shallowMount(Plotly, {
     propsData: {
       layout,
@@ -53,7 +55,12 @@ function shallowMountPlotty() {
       id
     },
     attrs,
-    attachToDocument: true
+    attachToDocument: true,
+    global: {
+      directives: {
+        resize: resize
+      }
+    }
   });
 }
 
@@ -86,15 +93,11 @@ describe("Plotly.vue", () => {
   });
 
   it("renders a div", () => {
-    expect(wrapper.is("div")).toBe(true);
+    expect(wrapper.element.tagName).toBe("DIV");
   });
 
   it("sets id on div", () => {
-    expect(wrapper.is(`#${id}`)).toBe(true);
-  });
-
-  it("sets id on div", () => {
-    expect(wrapper.is(`#${id}`)).toBe(true);
+    expect(wrapper.element.id).toBe(`${id}`);
   });
 
   it("calls plotly newPlot", () => {
@@ -118,6 +121,7 @@ describe("Plotly.vue", () => {
   });
 
   it("calls resize directive", () => {
+    const resize2 = resize;
     const {
       mock: { calls }
     } = resize.inserted;
@@ -138,7 +142,7 @@ describe("Plotly.vue", () => {
         calls: [call]
       }
     } = resize.inserted;
-    const { value: callBackResize } = call[1];
+    const { value: callBackResize } = calls[1];
     callBackResize();
 
     expect(plotlyjs.Plots.resize).toHaveBeenCalledWith(vm.$el);
@@ -184,7 +188,7 @@ describe("Plotly.vue", () => {
 
   describe.each([
     ["data", wrapper => wrapper.setProps({ data: [{ data: "novo" }] })],
-    ["attr", wrapper => (wrapper.vm.$attrs = { displayModeBar: "hover" })]
+    ["attr", wrapper => (wrapper.setProps({ displayModeBar: "hover" }))]
   ])("when %p changes", (_, changeData) => {
     describe.each([
       ["once", changeData],
@@ -200,7 +204,7 @@ describe("Plotly.vue", () => {
 
       beforeEach(() => {
         console.error = () => {};
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         update(wrapper);
       });
       afterEach(() => {
@@ -223,11 +227,11 @@ describe("Plotly.vue", () => {
   describe("when attrs and props changes in the same tick", () => {
     const { error } = console;
 
-    beforeEach(() => {
+    beforeEach(async () => {
       console.error = () => {};
-      jest.clearAllMocks();
-      wrapper.setProps({ data: [{ data: "novo" }] });
-      wrapper.vm.$attrs = { displayModeBar: "hover" };
+      vi.clearAllMocks();
+      await wrapper.setProps({ data: [{ data: "novo" }] });
+      await wrapper.setProps({ displayModeBar: "hover" });
     });
     afterEach(() => {
       console.error = error;
@@ -250,9 +254,9 @@ describe("Plotly.vue", () => {
 
     beforeEach(() => {
       console.error = () => {};
-      jest.clearAllMocks();
+      vi.clearAllMocks();
       const attrs = Object.assign({}, vm.$attrs);
-      vm.$attrs = attrs;
+      wrapper.setProps(attrs);
     });
     afterEach(() => {
       console.error = error;
@@ -282,7 +286,7 @@ describe("Plotly.vue", () => {
       ]
     ])("%s in the same tick", (_, update) => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
         update(wrapper);
       });
 
@@ -319,7 +323,7 @@ describe("Plotly.vue", () => {
     ]
   ])("when layout changes and data changes", changes => {
     beforeEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
       changes();
     });
 
@@ -388,7 +392,8 @@ describe("Plotly.vue", () => {
 
   describe("when destroyed", () => {
     beforeEach(() => {
-      wrapper.destroy();
+
+      wrapper.unmount();
     });
 
     it("calls plotly purge", () => {

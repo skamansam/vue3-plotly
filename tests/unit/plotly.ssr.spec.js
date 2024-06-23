@@ -1,7 +1,3 @@
-/**
- * @jest-environment node
- */
-
 import { createRenderer } from "@vue/server-renderer";
 import Vue from "vue";
 import Plotly from "@/components/Plotly.vue";
