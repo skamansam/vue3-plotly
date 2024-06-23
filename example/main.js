@@ -5,7 +5,6 @@ import hljsVuePlugin from "@highlightjs/vue-plugin";
 import VueDraggableResizable from "vue-draggable-resizable";
 import { Plotly } from "@/index.js";
 
-// import "vue-draggable-resizable/dist/vue-draggable-resizable.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.css";
 
