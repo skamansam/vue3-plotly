@@ -1,6 +1,7 @@
 {
   "name": "vue3-plotly",
-  "version": "1.1.0",
+  "version": "1.2.0",
+  "description": "Vue3 component for Plotly.js",
   "private": false,
   "scripts": {
     "dev": "vite ",
