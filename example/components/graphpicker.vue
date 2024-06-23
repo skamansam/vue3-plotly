@@ -5,13 +5,18 @@
         <div class="col-3">
           <div class="col">
             <form class="form-group">
-              <select v-model="selected" class="form-control col" id="selector">
+              <select
+                v-model="selected"
+                class="form-control col"
+                id="selector"
+              >
                 <option
                   v-for="(example, idx) in generics"
                   :key="idx"
                   :value="example"
-                  >{{ example.display }}</option
                 >
+                  {{ example.display }}
+                </option>
               </select>
             </form>
           </div>
@@ -38,7 +43,10 @@
         <div class="col-9">
           <div class="row">
             <div class="col">
-              <highlight-code lang="javascript" :code="code" />
+              <highlight-code
+                lang="javascript"
+                :code="code"
+              />
             </div>
           </div>
 
@@ -62,7 +70,7 @@ import histogram2D from "./2D-histogram.js";
 import pie from "./pie.js";
 
 export default {
-  name: "picker",
+  name: "Picker",
   components: {
     editor
   },

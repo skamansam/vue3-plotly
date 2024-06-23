@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <a href="https://github.com/David-Desmaisons/vue-plotly" target="_blank">
+    <a
+      href="https://github.com/David-Desmaisons/vue-plotly"
+      target="_blank"
+    >
       <img
         style="position: fixed; top: 0; right: 0; border: 0; z-index:99999"
         width="149"
@@ -9,24 +12,27 @@
         class="attachment-full size-full"
         alt="Fork me on GitHub"
         data-recalc-dims="1"
-      />
+      >
     </a>
 
     <div class="container ">
       <div class="card">
         <div class="card-header">
           <div class="logo">
-            <img alt="Vue.draggable logo" src="./assets/logo.png" />
+            <img
+              alt="Vue.draggable logo"
+              src="./assets/logo.png"
+            >
             <p>
               <a
                 class="title-link"
                 href="https://github.com/David-Desmaisons/vue-plotly"
                 target="_blank"
-                ><span class="title">Vue.plotly</span></a
-              >a thin vue wrapper for
-              <a href="https://plot.ly/javascript/" target="_blank"
-                >plotly.js</a
-              >
+              ><span class="title">Vue.plotly</span></a>a thin vue wrapper for
+              <a
+                href="https://plot.ly/javascript/"
+                target="_blank"
+              >plotly.js</a>
             </p>
           </div>
 
@@ -37,8 +43,12 @@
               :key="idx"
             >
               <div>
-                <h4 class="big-icone"><i :class="`fa ${data.icon}`"></i></h4>
-                <p class="card-text">{{ data.text }}</p>
+                <h4 class="big-icone">
+                  <i :class="`fa ${data.icon}`" />
+                </h4>
+                <p class="card-text">
+                  {{ data.text }}
+                </p>
               </div>
             </div>
           </div>
@@ -54,7 +64,7 @@
       <div class="container">
         <img
           src="https://plot.ly/gh-pages/documentation/static/images/browser_support.png"
-        />
+        >
       </div>
     </footer>
   </div>
@@ -64,7 +74,7 @@
 import graphpicker from "./components/graphpicker.vue";
 
 export default {
-  name: "app",
+  name: "App",
   components: {
     graphpicker
   },
